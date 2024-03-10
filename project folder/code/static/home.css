@@ -1,0 +1,30 @@
+html, body {
+   height:100%
+   
+   }
+
+body
+{
+    margin: 0;
+    padding: 0;
+    background-color:#FFFDD0;
+}
+
+
+h1{
+    text-align: center;
+    color: black;
+    padding: 20px;
+}
+
+header {
+     background-color:#FFFDD0;
+     padding: 2.5rem 0;
+     
+    }
+
+a{
+   display: block;
+   text-align: center;
+  
+   }

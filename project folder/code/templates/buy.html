@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8"/>
+    <title> Buy Product </title>
+    <link rel="stylesheet" href="/static/buy.css">
+</head>
+<body>
+ <header>
+   <a href= "/login/user/{{user_id}}" style="float: right;">Back to Userpage</a>
+ </header>
+ <h2> {{c.name}}:{{p.name}} </h2>
+  <div class= "purchase">
+    <form oninput=total.value=quantity.value*price.value; " action="/login/user/{{user_id}}/category/{{category_id}}/product/{{product_id}}/buy" method="POST">
+        <div>
+           <p>Availability: Instock </p>
+        </div>
+        <div>
+            <label>Quantity</label>
+            <input type="number" min=0 step='any' name="quantity" value=" "  id ="a" required>{{p.unit}}
+        </div>
+        <div>
+            <label>Price</label>
+            <input type="number" min=0 step='any' name="price" value={{p.rate}} id="b" required>
+        </div>
+        <div>
+            <label>Total</label> Rs
+            <input type="number" min=0, step='any' name ="total" value="{{quantity}}*{{price}}"  id="c">
+            <input type="submit" value = "Buy" id="buy"/>
+        </div>
+    </form>
+  </div>  
+</body>   
+</html>

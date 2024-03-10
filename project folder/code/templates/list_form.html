@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>List</title>
+    <link rel="stylesheet" href="/static/list.css"
+</head>
+<body>
+  <header>
+    <a href="/login" style="float: right;"> LOGOUT</a>
+    <a href= "/login/user/{{user_id}}" style="float: right;"> Back to Userpage | </a>
+  </header> 
+  <h3> Orders list </h3>
+    <div class="list">
+       <form  action="/login/user/{{user_id}}/order/list"  method="POST"> 
+          <div>
+           <label>Order by date</label>
+           <input type="date" name="date" id="d">
+          </div>
+          <div>
+            <input type="submit" value = "Go" id="go">
+          </div>
+      </form>
+    </div> 
+ </body>
+ </html>

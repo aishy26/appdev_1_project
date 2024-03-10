@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/login.css">
+</head>
+
+<body>
+   <header>
+       <img src="https://thumbs.dreamstime.com/z/photo-collage-various-raw-fresh-cereals-legumes-spices-website-header-banner-suitable-281723125.jpg?w=992" width="1700px" height="100px" alt="grocery">
+    <a href="/" style="float: right;"> Home</a>   
+   </header>
+   <h2> LOGIN </h2>
+    <div class="login">
+        <form  action="/login" method="POST" id="login"> 
+          <div>
+           <label>Username</label>
+           <input type="text" name="username" id= "name"  required>
+          </div>
+          <div>
+           <label>Password</label>
+           <input type="password" name="password" id="pass" required>
+          </div>
+          
+          <div>
+            <input type="submit" value = "Login" id="log">
+          </div>
+        </form>
+        <div>
+          <a href ="/login/register">New User? Sign Up</a>
+        </div>
+    </div>     
+  
+ </body>
+ </html>

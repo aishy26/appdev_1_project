@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Update product</title>
+    <link rel="stylesheet" href="/static/product.css">
+</head>
+<body>
+  <header>
+       <a href="/admin/user/{{user_id}}" style="float: right;"> Back to adminpage </a>
+  </header>
+  <h2>Update Product </h2> 
+   <div class="product">
+    <form action="/admin/user/{{user_id}}/category/{{category_id}}/product/{{product_id}}/edit" method="POST" id="login-category-product-edit-form">
+         <div>
+            <label>Product name</label>
+            <input type="text" name="p_name" value="{{p.name}}" id="a"/>
+         </div>
+         <div>
+            <label>Manufacture Date</label>
+            <input type="date" name="m_date" value="{{p.manufacture_date}}" id="b"/>
+         </div>
+         <div>
+            <label>Expiry Date</label>
+            <input type="date" name="e_date" value= "{{p.expiry_date}}" id="c"/>
+         </div>
+         <div>
+            <label>Rate/unit</label>
+            <input type="number" min=0 step='any' name="rate" value= "{{p.rate}}" id="d"/>
+         <div>
+         <div>
+            <label>Unit</label>
+              <select name= "unit" value="{{p.unit}}" id="e"/>
+                <option value="Rs/kg">Rs/kg</option>
+                <option value="Rs/g">Rs/gram</option>
+                <option value="Rs/dozen">Rs/dozen</option>
+                <option value="Rs/litre">Rs/litre</option>
+              </select>
+         </div>
+         <div>
+            <label>Quantity</label>
+            <input type="number" min=0 step='any' name="quantity"  value="{{p.quantity}}" id="f"/>
+         </div>
+         <div>
+            <label>Image name</label>
+            <input type="text" name="image" value= {{p.image}} id="g" required>
+        </div>
+         <div>
+            <input type="submit" value = "Save" id= "sav">
+         </div>   
+    </form>
+   </div> 
+ </body>
+ </html>

@@ -1,0 +1,35 @@
+
+Name of the project: Grocery Store
+
+Description: THe aim of the project was to create a mock grocery store app for academic purposes.
+The project was done with :
+ -Flask
+ -Python
+ -HTMl 
+ -CSS
+ -SQLite
+
+Requirements: 
+ -The requirements include installing flask, flask_sqlalchemy,flask_security, flask_login,flask_cors.
+ -Creating a virtual env
+ -An IDE for running python3
+ -web browser
+ -text editor
+ -SQLite database
+
+Starting the application:
+- Start the virtual environment
+- Run the main.py file in the python intepreter . It will run on port 5000.
+  Admin:
+  -Login as admin
+  -As an admin we can add , edit , delete  category and products
+  User:
+  - Login as  user 
+  - If not a user, register as one.
+  - As a user you can buy products, edit and delete from the cart, edit profile, password, search for products.
+  - After buying the products, the products with the total price is displayed.
+  - As a user you can also view the list of previous order by selecting the date of order.
+
+
+
+

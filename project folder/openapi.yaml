@@ -1,0 +1,908 @@
+openapi: 3.0.0
+info:
+  title: Grocery Store
+  description: about order in grocery store
+    <h3> Category Table Schema </h3> 
+    <table>
+      <thead>
+        <th>Column Name</th>
+        <th>Column Type</th>
+        <th>Constraints</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>category_id</td>
+        <td>Integer</td>
+        <td>Primary Key, Auto Increment</td>
+      </tr>
+      <tr>
+        <td>name</td>
+        <td>String</td>
+        <td>Unique, Not Null</td>
+      </tr>
+    </tbody>
+    </table>
+
+
+    <h3> Product  Table Schema </h3> 
+    <table>
+      <thead>
+        <th>Column Name</th>
+        <th>Column Type</th>
+        <th>Constraints</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>product_id</td>
+        <td>Integer</td>
+        <td>Primary Key, Auto Increment</td>
+      </tr>
+      <tr>
+        <td>name</td>
+        <td>String</td>
+        <td>Not null</td>
+      </tr>
+      <tr>
+        <td>manufacture_date</td>
+        <td>String</td>
+        <td>Not null</td>
+      </tr>
+      <tr>
+        <td>expiry_date</td>
+        <td>String</td>
+        <td>Not null</td>
+      </tr>
+      <tr>
+        <td>rate</td>
+        <td>Integer</td>
+        <td>Not null</td>
+      </tr>
+      <tr>
+        <td>unit</td>
+        <td>String</td>
+        <td>Not null</td>
+      </tr>
+      <tr>
+        <td>quantity</td>
+        <td>Number</td>
+        <td>Not null</td>
+      </tr>
+      <tr>
+        <td>category_id</td>
+        <td>Integer</td>
+        <td>Foreign Key (category.category_id), Not Null</td>
+      </tr> 
+      <tr>
+        <td>image</td>
+        <td>String</td>
+        <td> Not Null</td>
+      </tr> 
+      
+    </tbody>
+    </table>
+    
+    <h3> Error Codes </h3> 
+    <table>
+      <thead>
+        <th>Resource</th>
+        <th>Error Code</th>
+        <th>Message</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>User</td>
+        <td>USER001</td>
+        <td>User not found</td>
+      </tr>
+      <tr>
+        <td>Category</td>
+        <td>CATEGORY001</td>
+        <td>Name is required</td>
+      </tr>
+      <tr>
+        <td>Category</td>
+        <td>CATEGORY002</td>
+        <td>Category not found</td>
+      </tr>
+      <tr>
+        <td>Category</td>
+        <td>CATEGORY003</td>
+        <td>Category already exist</td>
+      </tr>
+      <tr>
+        <td>Product</td>
+        <td>PRODUCT001</td>
+        <td> Name is required</td>
+      </tr>
+      <tr>
+        <td>Product</td>
+        <td>PRODUCT002</td>
+        <td> Manufacture date is required</td>
+      </tr>
+      <tr>
+        <td>Product</td>
+        <td>PRODUCT003</td>
+        <td> Expiry date is required</td>
+      </tr>  
+      <tr>
+        <td>Product</td>
+        <td>PRODUCT004</td>
+        <td> Rate is required</td>
+      </tr> 
+      <tr>
+        <td>Product</td>
+        <td>PRODUCT005</td>
+        <td> Quantity is required</td>
+      </tr> 
+      <tr>
+        <td>Product</td>
+        <td>PRODUCT006</td>
+        <td> Unit is required</td>
+      </tr> 
+      <tr>
+        <td>Product</td>
+        <td>PRODUCT007</td>
+        <td> Category_id is required</td>
+      </tr> 
+      <tr>
+        <td>Product</td>
+        <td>PRODUCT008</td>
+        <td> Image is required</td>
+      </tr>
+      <tr>
+        <td>Product</td>
+        <td>PRODUCT009</td>
+        <td> Product already exists</td>
+      </tr> 
+      <tr>
+        <td>Product</td>
+        <td>PRODUCT010</td>
+        <td> Product Not found </td>
+      </tr>  
+    </tbody>
+    </table>
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:5000/
+paths:
+  /api/admin/user/{user_id}/category:
+    description: End point to create category resource
+    post:
+      tags:
+      - "category"
+      description: Operation to create the category resource
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                    type: string
+                    example: fruits
+                
+      responses:
+        '201':
+          description: Successfully Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  category_id:
+                    type: integer
+                    example: 201
+                  name:
+                    type: string
+                    example: fruits
+                  
+        '409':
+          description: already exist
+          content:
+            application/json:
+              schema  :
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema  :
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '401':
+          description: Not Authorized
+ 
+  /api/admin/user/{user_id}/category/{category_id}:
+    get:
+      tags:
+      - "category"
+      description: URL to get the category details in store.
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: integer
+            example: 101
+        - in: path
+          name: category_id
+          required: true
+          schema:
+            type: integer
+            example: 101
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  properties:
+                    category_id:
+                      type: integer
+                      example: 101
+                    category_name:
+                      type: string
+                      example: Vegetables
+                    
+                    
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '500':
+          description: Internal Server Error
+        '401':
+          description: Not authorized
+  
+    put:
+      tags:
+      - "category"
+      description: Operation to update the category resource.
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+        - in: path
+          name: category_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                    type: string
+                    example: fruits
+              
+      responses:
+        '200':
+          description: Successfuly updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  category_id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: fruits
+                            
+                  
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message: 
+                    type: string
+        '401':
+          description: Not authorized          
+                    
+    delete:
+      description: Operation to delete the category resource
+      tags:
+      - "category"
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+        - in: path
+          name: category_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+      responses:
+        '200':
+          description: Successfully Deleted
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '500':
+          description: Internal Server Error    
+        '400':
+          description: Bad request
+        '401':
+          description: Not Authorized
+
+  /api/admin/user/{user_id}/category/{category_id}/product:
+    description: End point to create product resource
+    post:
+      description: Operation to create the product resource
+      tags:
+      - "product"
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: integer
+            example: 2
+        - in: path
+          name: category_id
+          required: true
+          schema:
+            type: integer
+            example: 50
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:                      
+                  type: string
+                  example: apple
+                manufacture_date:
+                  type: string
+                  example: 2022-12-12 
+                expiry_date:
+                  type: string
+                  example:  2023-12-12
+                rate:
+                  type: integer
+                  example: 20
+                unit:
+                  type: string
+                  example: Rs/kg
+                quantity:
+                  type: integer
+                  example: 200
+                category_id:
+                  type: integer
+                  example: 20
+                image:
+                  type: string
+                  example: blue
+                
+                
+      responses:
+        '201':
+          description: Successfully Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  product_id:
+                    type: integer
+                    example: 201
+                  name:                      
+                    type: string
+                    example: apple
+                  manufacture_date:
+                    type: string
+                    example:  2022-12-12
+                  expiry_date:
+                    type: string
+                    example:  2023-12-12
+                  rate:
+                    type: integer
+                    example: 20
+                  unit:
+                    type: string
+                    example: Rs/kg
+                  quantity:
+                    type: integer
+                    example: 200
+                  category_id:
+                    type: integer
+                    example: 20
+                  image:
+                    type: string
+                    example: blue
+        '409':
+          description: Product Already exists
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema  :
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '401':
+          description: Not authorized  
+          
+  /api/admin/user/{user_id}/category/{category_id}/product/{product_id}:             
+    get:
+      description: URL to get the list of products in store.
+      tags:
+      - "product"
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: integer
+            example: 2
+        - in: path
+          name: category_id
+          required: true
+          schema:
+            type: integer
+            example: 50    
+        - in: path
+          name: product_id
+          required: true
+          schema:
+            type: integer
+            example: 50
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  properties:
+                    product_id:
+                      type: integer
+                      example: 101
+                    name:
+                      type: string
+                      example: 201
+                    manufacture_date:
+                      type: string
+                      example: 201  
+                    expiry_date:
+                      type: string
+                      example: 201  
+                    rate:
+                      type: integer
+                      example: 201
+                    unit:
+                      type: string
+                      example: 201
+                    quantity:
+                      type: number
+                      format: float
+                      example: 201
+                    category_id:
+                      type: integer
+                      example: 201
+                    image:
+                      type: string
+                      example: blue
+                      
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '500':
+          description: Internal Server 
+        '401':
+          description: Not Authorized
+           
+    put:
+      description: URL to update the list of products in store.
+      tags:
+      - "product"
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: integer
+            example: 2
+        - in: path
+          name: category_id
+          required: true
+          schema:
+            type: integer
+            example: 50
+        - in: path
+          name: product_id
+          required: true
+          schema:
+            type: integer
+            example: 50
+      requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:                      
+                    type: string
+                    example: apple
+                  manufacture_date:
+                    type: string
+                    example: 2022-12-21 
+                  expiry_date:
+                    type: string
+                    example: 2023-12-21  
+                  rate:
+                    type: integer
+                    example: 20
+                  unit:
+                    type: string
+                    example: Rs/kg
+                  quantity:
+                    type: integer
+                    example: 200
+                  category_id:
+                    type: integer
+                    example: 20
+                  image:
+                    type: string
+                    example: blue
+      responses:
+        '200':
+            description: Successfuly updated
+            content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      product_id:
+                        type: integer
+                        example: 201
+                      name:                      
+                        type: string
+                        example: apple
+                      manufacture_date:
+                        type: string
+                        example: 2022-01-22
+                      expiry_date:
+                        type: string
+                        example: 2023-12-11
+                      rate:
+                        type: integer
+                        example: 20
+                      unit:
+                        type: string
+                        example: Rs/kg
+                      quantity:
+                        type: integer
+                        example: 200
+                      category_id:
+                        type: integer
+                        example: 20
+                      image:
+                        type: string
+                        example: blue
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '500':
+          description: Internal Server Error
+        '400':
+          description:  Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '401':
+          description: Not Authorized          
+    delete:
+      description: Operation to delete the product resource
+      tags:
+      - "product"
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+        - in: path
+          name: category_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+        - in: path
+          name: product_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+      responses:
+        '200':
+          description: Successfully Deleted
+        '404':
+          description:  Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '500':
+          description: Internal Server Error 
+        '401':
+          description: Not Authorized
+          
+  /api/login/user/{user_id}/category/{category_id}/product:
+    get:
+      description: URL to get the list of products in store.
+      tags:
+      - "p_product"
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: integer
+            example: 2
+        - in: path
+          name: category_id
+          required: true
+          schema:
+            type: integer
+            example: 50    
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  properties:
+                    product_id:
+                      type: integer
+                      example: 101
+                    name:
+                      type: string
+                      example: 201
+                    manufacture_date:
+                      type: string
+                      example: 201  
+                    expiry_date:
+                      type: string
+                    rate:
+                      type: integer
+                      example: 20
+                    unit:
+                      type: string
+                      example: Rs/kg
+                    quantity:
+                      type: integer
+                      example: 200
+                    category_id:
+                      type: integer
+                      example: 20
+                    image:
+                      type: string
+                      example: blue
+                  
+      
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '500':
+         description: Internal Server Error  
+        '401':
+          description: Not authorized
+          
+  /api/login/user/{user_id}/category:
+    description: End point to get list of category resource
+    get:
+      tags:
+      - "c_category"
+      description: URL to get the list of category in store.
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: integer
+            example: 10
+            
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  properties:
+                    category_id:
+                      type: integer
+                      example: 101
+                    category_name:
+                      type: string
+                      example: Vegetables
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '500':
+          description: Internal Server Error
+        '401':
+          description: Not authorized

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/userpage.css">
+</head>
+<body>
+ {% if current_user.is_authenticated %}
+    <header>
+        <h1 class="logo" align="left">{{username}}'s Dashboard</h1>
+        <nav class="dropdownmenu">
+          <ul> 
+           <li><a href="/logout" style="float: right;"> LOGOUT</a></li>  
+           <li><a href= "/login/user/{{user_id}}/cart" style="float: right;">Cart</a></li> 
+           <li><a href= "/login/user/{{user_id}}/order" style="float:right;">My orders</a></li>
+           <li><a href= "/login/user/{{user_id}}/profile "style="float:right;">My Profile</a></li>
+          </ul>
+          <form action="/login/user/{{user_id}}/search" method="POST">             
+            <input type="text" name="q"  placeholder="Search Category/Products">
+             <input type= "submit" value="Search">
+          </form>
+        </nav>
+    </header>
+    <div class="search" style="float:left">
+      <form action="/login/user/{{user_id}}/search/product" method="POST">
+        <label>Search products by:</label>
+        <input type="price" name="a"  placeholder="Search price/unit"> 
+        <label>Manufacture date:</label>
+        <input type="date" name="b"  placeholder="Manufacture Date">
+        <label>Expiry date:</label>
+        <input type="date" name="c"  placeholder="Expiry_date">
+         <input type= "submit" value="Search">
+      </form>
+    </div>
+    <h3 align="right"> Welcome {{username}} </h3>
+    <div class= 'container'>
+       {% if category|length > 0 %}
+         {% for i in category %}
+           <div class="item">
+             <br><b>{{i.name }}</b></br>
+                <div class= "container_1">
+                  {% if product|length > 0 %}
+                    {% for j in product %}
+                     {% if i.category_id==j.category_id %}
+                        <div class = "item_1"> 
+                        <br><img src="/static/Images/{{j.image}}.jpeg" alt= "{{j.image}}"  width= 200px height=150px></br>
+                          <br><b>{{j.name}}   {{j.rate}}{{j.unit}}</b></br>
+                          {% if j.quantity > 0 %}
+                                <br><a href="/login/user/{{user_id}}/category/{{i.category_id}}/product/{{j.product_id}}/buy"><button type="button buy-button" id="button" >Buy</button></a></br>
+                               
+                          {% else %}
+                             <p> Out of Stock </p>
+                          {% endif %}
+                        </div> 
+                     {% endif%}
+                    {% endfor %}
+                  {% endif %} 
+                </div>  
+           </div>
+         {% endfor %}
+       {% endif %} 
+    </div>   
+ {% else %}
+   <p>You are not logged in </p>
+ {% endif %}  
+ </body>
+ </html>

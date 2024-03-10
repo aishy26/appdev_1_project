@@ -1,0 +1,55 @@
+header {
+     background-color:#FFFDD0;
+     padding: 2.5rem 0;
+     
+    }
+      
+  .logo {
+      font-size:2rem;
+      text-align:left;
+      color:black;
+     
+     }
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+ .container_1 {
+    display: flex;
+    flex-wrap: wrap
+   }
+   
+ .item_1 {
+   background-color:#FFFDD0;
+   flex-basis:200px;
+   height:280px;
+   margin:10px;
+   }
+  
+ .item {
+   background-color:coral;
+   flex-basis:500px;
+   height: auto;
+   margin: 10px;
+ }
+ 
+ .button {
+     width: 400px;
+     height: 80px;
+  }
+  
+ .button1,.button2{
+   
+   width: 200px;
+   height: 40px;
+}
+
+.button3,.button4{
+   
+   width: 50px;
+   height: 15px;
+}
+

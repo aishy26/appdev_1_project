@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add a category</title>
+    <link rel="stylesheet" href="/static/category_form.css">
+</head>
+<
+<body>
+  <header>
+     <a href="/admin/user/{{user_id}}" style="float: right;"> Back to adminpage </a>
+  </header>
+  <h2>Add a category </h2>
+   <div class="add"> 
+    <form action="/admin/user/{{user_id}}/category/add" method="POST" id="login-category-add-form">
+       <div>
+          <label>Category name</label>
+          <input type="text" name="name" id ="a" required>
+       </div>
+       <div>
+          <label>
+          <input type="submit" value = "Save" id="sav">
+       </div>
+    </form>
+   </div>
+ </body>
+ </html>

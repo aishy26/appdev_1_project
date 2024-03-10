@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add a product</title>
+    <link rel="stylesheet" href="/static/product.css">
+</head>
+<body>
+  <header>
+       <a href="/admin/user/{{user_id}}" style="float: right;"> Back to adminpage </a>
+  </header>
+  <h2>Add a product </h2>
+   <div class="product">
+     <form action="/admin/user/{{user_id}}/category/{{category_id}}/product/add" method="POST" id="login-category-product-add-form">
+      {% for i in c %}
+        {% if i.category_id==category_id %}
+        
+        <div>
+            <label>Product name</label>
+            <input type="text" name="name" id="a" required>
+        </div>
+        <div>
+            <label>Manufacture Date</label>
+            <input type="date" name="m_date" id="b" required>
+        </div>
+        <div>
+            <label>Expiry Date</label>
+            <input type="date" name="e_date" id="c" required>
+        </div>
+        <div>
+            <label>Rate/unit</label>
+            <input type="number"min=0 step='any' name="rate"  id="d" required>
+        <div>
+        <div>
+            <label>Unit</label>
+              <select name= "unit"  id= "e">
+                <option value="Rs/kg">Rs/kg</option>
+                <option value="Rs/g">Rs/gram</option>
+                <option value="Rs/dozen">Rs/dozen</option>
+                <option value="Rs/litre">Rs/litre</option>
+              </select>
+        </div>
+        <div>
+            <label>Quantity</label>
+            <input type="number" min=0 step='any' name="quantity"  id= "f" required>
+        </div>
+        <div>
+            <label>Product Image</label>
+            <input type="text" name="image" id="g" required>
+        </div>
+        <div>
+            <label>
+            <input type="submit" value = "Save" id= "sav">
+        </div>
+        {% endif %}
+      {% endfor %}
+    </form>
+   </div>
+ </body>
+ </html>

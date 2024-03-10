@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Category Search</title>
+    <link rel="stylesheet" href="/static/userpage.css">
+</head>
+
+<body>
+ <header>
+        <a href="/login/user/{{user_id}}" style="float:right;">Back to userpage</a>
+        <h1 class="logo" align="left">{{username}}'s Dashboard</h1>
+        <nav class="dropdownmenu">
+          <ul>
+           <li><a href="/login" style="float: right;">LOGOUT</a></li>  
+           <li><a href= "/login/user/{{user_id}}/cart" style="float:right;">Cart</a></li> 
+           <li><a href= "/login/user/{{user_id}}/order" style="float:right;">My orders</a></li>
+           <li><a href= "/login/user/{{user_id}}/profile "style="float:right;">My Profile</a></li>
+          </ul>
+          <form action="/login/user/{{user_id}}/search" method="POST">
+             <input type="text" name="q"  placeholder="Search Categories/Products">
+             <input type= "submit" value="Search">
+          </form>
+        </nav>
+ </header>
+ <div class="search" style="float:left">
+      <form action="/login/user/{{user_id}}/search/product" method="POST">
+        <label>Search products by:</label>
+        <input type="price" name="a"  placeholder="Search price/unit"> 
+        <label>Manufacture date:</label>
+        <input type="date" name="b"  placeholder="Manufacture Date">
+        <label>Expiry date:</label>
+        <input type="date" name="c"  placeholder="Expiry_date">
+         <input type= "submit" value="Search">
+      </form>
+ </div>
+ <h3 align="right"> Search Results </h3>
+ {% if prod %}
+   <div class="container_1">
+       {% for i in prod %}
+       <div class = "item_1">
+         <br><img src="/static/Images/{{i.image}}.jpeg" alt= "{{i.image}}"  width= 200px height=150px></br>
+           <br><b>{{i.name}}   {{i.rate}}{{i.unit}}</b></br>
+               {% if i.quantity > 0 %}
+                   <br><a href="/login/user/{{user_id}}/category/{{i.category_id}}/product/{{i.product_id}}/buy"><button type="button buy-button" id="button" >Buy</button></a>   
+                <b>{{i.manufacture_date}} {{i.expiry_date}}</b>             
+               {% else %}
+                     <p> Out of Stock </p>
+               {% endif %}
+       </div> 
+     {% endfor %}
+   </div>  
+  {% else %}
+     <p> No match found </p>
+  {% endif %}
+
+ </body>
+ </html>

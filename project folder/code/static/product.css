@@ -1,0 +1,43 @@
+header {
+     background-color:#FFFDD0;
+     padding: 2.5rem 0;
+     
+    }
+
+.product{
+        width: 200px;
+        margin: auto;
+        margin: 20 0 0 300px;
+        padding: 80px;
+        background:coral;
+        border-radius: 15px ;
+
+}
+h2{
+    text-align:center;
+    color: black;
+    padding: 20px;
+}
+label{
+    color:black;
+    font-size: 17px;
+}
+.a, .b ,.c ,.d ,.e,.f{
+    width: 150px;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    padding-left: 8px;
+}
+
+
+#sav{
+    width: 200px;
+    height: 30px;
+    border: none;
+    border-radius: 17px;
+    padding-left: 7px;
+    color: black;
+    
+}
+

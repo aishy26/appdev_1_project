@@ -1,0 +1,144 @@
+html, body {
+   height:100%
+   
+   }
+   
+*{
+  margin :0;
+  padding:0;
+  box-sizing:border-box;
+ }
+  
+body {
+   font-size: 1rem;
+   line-height: 1.6;
+   background-color: white;
+   color:black;
+   
+   }
+   
+  
+.container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+ .container_1 {
+    display: flex;
+    flex-wrap: wrap
+   }
+   
+ .item_1 {
+   background-color:#FFFDD0;
+   flex-basis:auto;
+   height:300px;
+   margin:10px;
+   }
+  
+ .item {
+   background-color:coral;
+   flex-basis:auto;
+   height: auto;
+   margin: 10px;
+ }
+ 
+ .button {
+     width: 700px;
+     height: 100px;
+  }
+  
+  header {
+     background-color:#FFFDD0;
+     padding: 2.5rem 0;
+     
+    }
+      
+  .logo {
+      font-size:2rem;
+      text-align:left;
+      color:black;
+     
+     }
+     
+  .h3{ 
+     text-align:left;
+     color:black;
+    }
+  
+  .dropdownmenu input {
+    float: left;
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
+    
+    }
+  .dropdownmenu ul, .dropdowm li {
+       margin:0;
+       padding:0;
+   
+      }
+      
+  .dropdownmenu ul {
+     background:grey;
+     list-style:none;
+     width:100%
+     
+     }
+     
+   .dropdownmenu li{
+     float:right;
+     position:relative;
+     width:auto;
+    
+    }
+  .dropdownmenu a {
+       text-decoration:none;
+       color:black;
+       display:block;
+       padding:10px 1.5rem;
+       transition:background-color .22s ease, color .22s ease;
+         
+    }
+    
+   .dropdownmenu li:hover a {
+       background-color:grey;
+       color:black;
+      
+      }
+      
+   #submenu {
+        left:0;
+        opacity:0;
+        background-color:grey;
+        position:absolute;
+        visibility:hidden;
+        z-index:1;
+        top:35px
+        
+      }
+      
+      
+     li:hover ul#submenu {
+        opacity:1;
+        visibility:visible;
+    
+        }
+     
+     #submenu li {
+       float:none;
+       width:100%
+       
+       }
+   
+     #submenu a:hover {
+        background-color: red;
+        
+        }    
+     #submenu a {
+       background-color:#FFFDD0;
+       
+       }  
+      
+   

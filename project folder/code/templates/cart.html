@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add to Cart</title>
+     <link rel="stylesheet" href="/static/cart.css">
+    
+</head>
+<body>
+  <header>
+    <a href="/login" style="float: right;"> LOGOUT</a>
+    <a href= "/login/user/{{user_id}}" style="float: right;"> Back to Userpage | </a>
+  </header>
+  <h3> Items purchased </h3>
+  <table class= "center">
+    <tr>
+       <th>Product Name</th>
+       <th>Quantity </th>
+       <th>Price</th>
+       <th>Total</th>
+       <th>Options</th>
+    </tr>
+    {% for k in c %}
+       {% if k.c_user_id==user_id %}
+            {% for i in p %}
+              {% if i.product_id==k.c_product_id %}
+                 {% for j in cat %}
+                     {% if j.category_id== k.c_category_id %}
+                      <tr>
+                        <td>{{j.name}} : {{i.name}}</td>
+                        <td>{{k.quantity}}</td>
+                        <td>{{k.price}}</td>
+                        <td>{{k.total}}</td>
+                        <td><a href ="/login/user/{{user_id}}/cart/{{i.product_id}}/edit"><button>Edit</button></a>
+                            <a href="/login/user/{{user_id}}/cart/{{i.product_id}}/delete"><button>Delete</button></a></td>
+                      </tr>
+                     {% endif %}
+                 {% endfor %}
+              {% endif %}
+            {% endfor %}
+       {% endif %}
+    {% endfor %} 
+  </table>
+  <div class="total">
+   
+       Total: {{ c |sum(attribute='total') }} 
+  </div>
+  <div class= "buy">
+   
+    <a href="/login/user/{{user_id}}">ADD PRODUCT</a>
+    <a href="/login/user/{{user_id}}/final"><button>Buy all</button</a> 
+  </div>
+</body>
+</html>

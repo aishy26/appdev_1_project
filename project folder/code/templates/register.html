@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Register</title>
+    <link rel="stylesheet" href="/static/register.css">
+</head>
+<body>
+ <header>
+    <img src="https://thumbs.dreamstime.com/z/photo-collage-various-raw-fresh-cereals-legumes-spices-website-header-banner-suitable-281723125.jpg?w=992" width="1700px" height="100px" alt="grocery">
+    <a href="/" style="float: right;"> Home</a>   
+ </header>
+ <h2> Register </h2>
+  <div class="register">
+    <form action="/login/register" method="POST" id="login-form">
+       <div>
+          <label>Name</label>
+          <input type="text" name="name" id="a" required>
+       </div>
+       <div>
+          <label>Username</label>
+          <input type="text" name="username" id="b" required>
+       </div>
+       <div>
+          <label>Email</label>
+          <input type="email" name="email" id="c" required>
+       </div>
+       <div>
+          <label>Password</label>
+          <input type="password" name="password" id="d"required>
+       </div>
+       <div>
+          <label>Address</label>
+          <input type="text" name="address"  id="e" required>
+          <input type='hidden' name='role' value="12" >
+       </div>
+       <div>
+          <input type="submit" value = "Register" id="reg" >
+       </div>
+    </form>
+  </div>
+ </body>
+ </html>

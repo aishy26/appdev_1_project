@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8"/>
+    <title> Recent orders </title>
+    <link rel="stylesheet" href="/static/order.css">
+</head>
+<body>
+  <header>
+    <a href= "/login/user/{{user_id}}" style="float: right;">Back to Userpage</a>
+  </header>
+  <h3>Order:{{date}}</h3>
+  <table class= "center">
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Total</th>
+    </tr>
+    {% for i in k %}
+    <tr>
+        <td>{{i[0]}}</td>
+        <td>{{i[1]}}</td>
+        <td>{{i[2] }}</td>
+    </tr>
+    {% endfor %}
+  </table> 
+  <div class= "total">
+      Total: {{total}}  
+  </div>
+</body>
+</html>

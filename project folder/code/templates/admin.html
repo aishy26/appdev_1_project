@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Admin</title>
+    <link rel="stylesheet" href="/static/category.css">
+</head>
+<body>
+ {% if current_user.is_authenticated %}
+   
+    <header>
+        <h1 class="logo" align="left">Admin's Dashboard</h1>
+          <ul> 
+           <a href="/logout" style="float: right;"> LOGOUT</a>
+          </ul>
+    </header> 
+    <div class ="container">
+      {% if category %}
+         {% for cat in category %}
+           <div class="item">
+             <br><b>{{cat["name"] }}</b></br>
+                <div class= "container_1">
+                 {% if product  %}
+                   {% for product in product %}
+                     {% if cat.category_id==product.category_id %}
+                        <div class = "item_1">
+                         <br><img src="/static/Images/{{product.image}}.jpeg" alt= "{{product.image}}"  width= 200px height=150px></br>
+                          <br><b>{{product["name"] }}  {{product["rate"] }}{{product["unit"] }}</b></br>
+                          <br><a href="/admin/user/{{user_id}}/category/{{cat.category_id}}/product/{{product.product_id}}/edit"><button type="button edit-button" id="button3" >Edit</button></a>
+                          <a href="/admin/user/{{user_id}}/category/{{cat.category_id}}/product/{{product.product_id}}/delete"><button type="button delete-button" id="button4">Delete</button></a></br>
+                        </div> 
+                     {% endif%}
+                   {% endfor %}
+                 {% else %}
+                    <p>No products added</p>
+                 {% endif %}   
+                </div>
+             <br><a href="/admin/user/{{user_id}}/category/{{cat.category_id}}/product/add"><button type="button add-product-button" id="button" >+</button></a></br>
+             <br><a href="/admin/user/{{user_id}}/category/{{cat.category_id}}/edit"><button type="button edit-button" id="button1" >Edit</button></a>
+	     
+             <a href="/admin/user/{{user_id}}/category/{{cat.category_id}}/delete"><button type="button delete-button" id="button2">Delete</button></a></br>
+           </div>
+         {% endfor %}
+      {% else %}
+          <p> No categories or product found. </p> 
+      {% endif %} 
+    </div>  
+  
+   
+ </body>
+ <a href="/admin/user/{{user_id}}/category/add" style="float: right;"><button>Add a category</button></a></br>
+  
+ {% else %}
+   <p> you are not logged in </p>
+ {% endif %}
+ </html>
